@@ -1,0 +1,33 @@
+{
+  "info": {
+    "name": "URL Shortener API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:8000" },
+    { "key": "code", "value": "fastapi" }
+  ],
+  "item": [
+    { "name": "Health check", "request": { "method": "GET", "url": "{{base_url}}/health" } },
+    {
+      "name": "Shorten URL (random code)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{base_url}}/shorten",
+        "body": { "mode": "raw", "raw": "{\n  \"url\": \"https://www.python.org/downloads/\"\n}" }
+      }
+    },
+    {
+      "name": "Shorten URL (custom code)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{base_url}}/shorten",
+        "body": { "mode": "raw", "raw": "{\n  \"url\": \"https://fastapi.tiangolo.com\",\n  \"custom_code\": \"fastapi\"\n}" }
+      }
+    },
+    { "name": "Redirect", "request": { "method": "GET", "url": "{{base_url}}/{{code}}" } },
+    { "name": "Click stats", "request": { "method": "GET", "url": "{{base_url}}/stats/{{code}}" } }
+  ]
+}

@@ -1,0 +1,7 @@
+fastapi
+uvicorn[standard]
+SQLAlchemy>=2.0.44
+psycopg2-binary>=2.9.11
+pydantic>=2.12
+pytest
+httpx

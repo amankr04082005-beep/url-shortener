@@ -17,7 +17,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="URL Shortener API", version="1.0.0", lifespan=lifespan)
 
-BASE_URL = os.getenv("BASE_URL", "http://localhost:8000").rstrip("/")
+BASE_URL = (os.getenv("BASE_URL") or os.getenv("RENDER_EXTERNAL_URL") or "http://localhost:8000").rstrip("/")
 
 
 @app.get("/health")

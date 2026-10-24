@@ -20,6 +20,11 @@ app = FastAPI(title="URL Shortener API", version="1.0.0", lifespan=lifespan)
 BASE_URL = (os.getenv("BASE_URL") or os.getenv("RENDER_EXTERNAL_URL") or "http://localhost:8000").rstrip("/")
 
 
+@app.get("/", include_in_schema=False)
+def root():
+    return RedirectResponse(url="/docs")
+
+
 @app.get("/health")
 def health():
     return {"status": "ok"}
